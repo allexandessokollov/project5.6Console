@@ -20,7 +20,7 @@ void fillArrKeyboard(int arr[], int arrSize);
 void fillArrRandomly(int arr[], int arrSize);
 
 
-int const maxArraySize = 14;
+int const MAX_ARRAY_SIZE = 14;
 
 int coloseApp()
 {
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
     printf("Enter array size\n");
     scanf("%d", &arrSize);
 
-    while(arrSize < 0 || arrSize > maxArraySize)
+    while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE)
     {
         printf("Size of array should be more than 0 and less than 14\n");
         scanf("%d", &arrSize);
@@ -143,7 +143,7 @@ int secondNeg(int arr[], int arrSize)
         }
     }
 
-    return -1;    //TODO: Add your source code here
+    return -1;    
 }
 
 int countAnswer(int arr[], int firstNeg, int secondNeg)
