@@ -22,14 +22,14 @@ int main()
 {
     int arrSize, fNeg, sNeg, answer, toFillArr;
 
-    printf("Enter array size\n");
+    do
+    {
+    printf("Enter array size\n"
+    "Size of array should be more than 0 and less than %d\n ", MAX_ARRAY_SIZE);
+
     scanf("%d", &arrSize);
 
-    while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE)
-    {
-        printf("Size of array should be more than 0 and less than 14\n");
-        scanf("%d", &arrSize);
-    }
+    } while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE);
 
     int *arr = new int[arrSize];
     

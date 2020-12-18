@@ -22,14 +22,11 @@ int main()
 {
     int arrSize, fNeg, sNeg, answer, toFillArr;
 
-    printf("Enter array size\n");
-    scanf("%d", &arrSize);
+    do {
+    printf("Enter array size\n" +
+    "Size of array should be more than 0 and less than %d\n ", MAX_ARRAY_SIZE);
 
-    while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE)
-    {
-        printf("Size of array should be more than 0 and less than 14\n");
-        scanf("%d", &arrSize);
-    }
+} while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE);
 
     int *arr = new int[arrSize];
     
@@ -75,15 +72,8 @@ int main()
     else
     {
         answer = findSequenceSumm(arr, fNeg, sNeg);
-        if(answer != -1)
-        {
-            printf("answer is: %d\n\n", answer);
-        }
-        else
-        {
-            printf("ERROR Negative number index hasn't found\n\n");
-        }
-       
+
+        printf("answer is: %d\n\n", answer);
     }
 
 
