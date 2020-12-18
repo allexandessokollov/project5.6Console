@@ -10,22 +10,27 @@
 #include <conio.h>
 #include <stdlib.h>
 
+int const MAX_ARRAY_SIZE = 14,
+MAX_RANDOM_VALUE = 15,
+MIN_RANDOM_VALUE = -5,
+failedSearch = -1;
+
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg);
 int findNegNumberIndex(int arr[], int startIndex, int arrSize);
 void fillArrKeyboard(int arr[], int arrSize);
 void fillArrRandomly(int arr[], int arrSize);
 
 
-int const MAX_ARRAY_SIZE = 14;
+
 
 int main()
 {
-    int arrSize, fNeg, sNeg, answer, toFillArr;
+    int arrSize, fNeg, sNeg, answer, userChoice;
 
     do
     {
     printf("Enter array size\n"
-    "Size of array should be more than 0 and less than %d\n ", MAX_ARRAY_SIZE);
+    "Size of array should be more than 0 and less than %d\n", MAX_ARRAY_SIZE);
 
     scanf("%d", &arrSize);
 
@@ -35,11 +40,10 @@ int main()
     
     printf("\nTo fill array using keybord press 1\nTo fill array randomly press 2\n");
 
-    scanf("%d", &toFillArr);
+    scanf("%d", &userChoice);
 
 
-    randomize();
-    switch(toFillArr)
+    switch(userChoice)
     {
     case 1:
         fillArrKeyboard(arr, arrSize);
@@ -59,30 +63,35 @@ int main()
     printf("\n\n");
 
 
-    fNeg = findNegNumberIndex(arr, 0, arrSize);;
-    sNeg = findNegNumberIndex(arr, fNeg + 1, arrSize);
+    fNeg = findNegNumberIndex(arr, 0, arrSize);
 
-    if((sNeg - fNeg) <= 1)
+    if(fNeg == failedSearch)
     {
-        printf("\n\nthere is no elements between\nrestart application\n\n");
-
-        puts("\n\n\nPress any key ... ");
-        getch();
-        getch();
-
-        return 0;
+        printf("\n\nthere is no negative numbers\nrestart application\n\n");
     }
     else
     {
-        answer = findSequenceSumm(arr, fNeg, sNeg);
+        sNeg = findNegNumberIndex(arr, fNeg + 1, arrSize);
 
-        printf("answer is: %d\n\n", answer);
+        if((sNeg - fNeg) <= 1)
+        {
+            printf("\n\nthere is no elements between\nrestart application\n\n");
+        }
+        else
+        {
+            answer = findSequenceSumm(arr, fNeg, sNeg);
+
+            printf("answer is: %d\n\n", answer);
+        }
     }
+    
 
 
     puts("\n\n\nPress any key ... ");
     getch();
     getch();
+
+    delete arr;
 
     return 0;
 }
@@ -90,18 +99,14 @@ int main()
 
 int findNegNumberIndex(int arr[], int startIndex, int arrSize)
 {
-    int ifWasntFind = -1;
-
     for(int i = startIndex; i < arrSize; i++)
     {
         if(arr[i] < 0)
             return i;
     }
 
-    return  ifWasntFind;
+    return  failedSearch;
 }
-
-
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg)
 {
@@ -116,8 +121,6 @@ int findSequenceSumm(int arr[], int firstNeg, int secondNeg)
     return answer;
 }
 
-
-
 void fillArrKeyboard(int arr[], int arrSize)
 {
 
@@ -131,11 +134,9 @@ void fillArrKeyboard(int arr[], int arrSize)
 
 void fillArrRandomly(int arr[], int arrSize)
 {
-    const int toRandom = 20,
-    toRandomCorrection = -5;
     for(int i = 0; i < arrSize; i++)
     {
-        arr[i] = random(toRandom) + toRandomCorrection;
+        arr[i] = random(MAX_RANDOM_VALUE - MIN_RANDOM_VALUE) + MIN_RANDOM_VALUE;
     }
 }
 //-------------------------------------------------------------------
