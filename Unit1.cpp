@@ -10,10 +10,10 @@
 #include <conio.h>
 #include <stdlib.h>
 
-int const MAX_ARRAY_SIZE = 14,
-MAX_RANDOM_VALUE = 15,
-MIN_RANDOM_VALUE = -5,
-failedSearch = -1;
+int const MAX_ARRAY_SIZE = 14;
+int const MAX_RANDOM_VALUE = 15;
+int const MIN_RANDOM_VALUE = -5;
+int const FAILED_SEARCH = -1;
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg);
 int findNegNumberIndex(int arr[], int startIndex, int arrSize);
@@ -65,7 +65,7 @@ int main()
 
     fNeg = findNegNumberIndex(arr, 0, arrSize);
 
-    if(fNeg == failedSearch)
+    if(fNeg == FAILED_SEARCH)
     {
         printf("\n\nthere is no negative numbers\nrestart application\n\n");
     }
@@ -105,7 +105,7 @@ int findNegNumberIndex(int arr[], int startIndex, int arrSize)
             return i;
     }
 
-    return  failedSearch;
+    return  FAILED_SEARCH;
 }
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg)
