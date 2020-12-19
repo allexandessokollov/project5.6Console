@@ -13,7 +13,7 @@
 int const MAX_ARRAY_SIZE = 14,
 MAX_RANDOM_VALUE = 15,
 MIN_RANDOM_VALUE = -5,
-failedSearch = -1;
+FAILED_SEARCH = -1;
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg);
 int findNegNumberIndex(int arr[], int startIndex, int arrSize);
@@ -65,7 +65,7 @@ int main()
 
     fNeg = findNegNumberIndex(arr, 0, arrSize);
 
-    if(fNeg == failedSearch)
+    if(fNeg == FAILED_SEARCH)
     {
         printf("\n\nthere is no negative numbers\nrestart application\n\n");
     }
@@ -73,15 +73,22 @@ int main()
     {
         sNeg = findNegNumberIndex(arr, fNeg + 1, arrSize);
 
-        if((sNeg - fNeg) <= 1)
+        if(sNeg == FAILED_SEARCH)
         {
-            printf("\n\nthere is no elements between\nrestart application\n\n");
+        printf("\n\nthere is no second negative number\nrestart application\n\n");
         }
         else
         {
-            answer = findSequenceSumm(arr, fNeg, sNeg);
+            if((sNeg - fNeg) <= 1)
+            {
+                printf("\n\nthere is no elements between\nrestart application\n\n");
+            }
+            else
+            {
+                answer = findSequenceSumm(arr, fNeg, sNeg);
 
-            printf("answer is: %d\n\n", answer);
+                printf("answer is: %d\n\n", answer);
+            }
         }
     }
     
@@ -91,7 +98,7 @@ int main()
     getch();
     getch();
 
-    delete arr;
+    delete []arr;
 
     return 0;
 }
@@ -105,13 +112,12 @@ int findNegNumberIndex(int arr[], int startIndex, int arrSize)
             return i;
     }
 
-    return  failedSearch;
+    return  FAILED_SEARCH;
 }
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg)
 {
     int answer = 0;
-
 
     for(int i = firstNeg + 1; i < secondNeg; i++)
     {
