@@ -10,10 +10,12 @@
 #include <conio.h>
 #include <stdlib.h>
 
+
 int const MAX_ARRAY_SIZE = 14;
 int const MAX_RANDOM_VALUE = 15;
 int const MIN_RANDOM_VALUE = -5;
 int const FAILED_SEARCH = -1;
+
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg);
 int findNegNumberIndex(int arr[], int startIndex, int arrSize);
@@ -73,15 +75,22 @@ int main()
     {
         sNeg = findNegNumberIndex(arr, fNeg + 1, arrSize);
 
-        if((sNeg - fNeg) <= 1)
+        if(sNeg == FAILED_SEARCH)
         {
-            printf("\n\nthere is no elements between\nrestart application\n\n");
+        printf("\n\nthere is no second negative number\nrestart application\n\n");
         }
         else
         {
-            answer = findSequenceSumm(arr, fNeg, sNeg);
+            if((sNeg - fNeg) <= 1)
+            {
+                printf("\n\nthere is no elements between\nrestart application\n\n");
+            }
+            else
+            {
+                answer = findSequenceSumm(arr, fNeg, sNeg);
 
-            printf("answer is: %d\n\n", answer);
+                printf("answer is: %d\n\n", answer);
+            }
         }
     }
     
@@ -91,7 +100,7 @@ int main()
     getch();
     getch();
 
-    delete arr;
+    delete []arr;
 
     return 0;
 }
@@ -111,7 +120,6 @@ int findNegNumberIndex(int arr[], int startIndex, int arrSize)
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg)
 {
     int answer = 0;
-
 
     for(int i = firstNeg + 1; i < secondNeg; i++)
     {
