@@ -39,7 +39,7 @@ int main()
     } while(arrSize < 0 || arrSize > MAX_ARRAY_SIZE);
 
     int *arr = new int[arrSize];
-    
+
     printf("\nTo fill array using keybord press 1\nTo fill array randomly press 2\n");
 
     scanf("%d", &userChoice);
