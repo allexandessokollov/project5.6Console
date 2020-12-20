@@ -10,12 +10,10 @@
 #include <conio.h>
 #include <stdlib.h>
 
-
 int const MAX_ARRAY_SIZE = 14;
 int const MAX_RANDOM_VALUE = 15;
 int const MIN_RANDOM_VALUE = -5;
 int const FAILED_SEARCH = -1;
-
 
 int findSequenceSumm(int arr[], int firstNeg, int secondNeg);
 int findNegNumberIndex(int arr[], int startIndex, int arrSize);
@@ -148,4 +146,3 @@ void fillArrRandomly(int arr[], int arrSize)
     }
 }
 //-------------------------------------------------------------------
- 
